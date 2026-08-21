@@ -29,7 +29,7 @@ def index():
         <p>Rama: {cfg['rama']}</p>
         <p>Commit: {cfg['commit']}</p>
         <p>Versión: {cfg['version']}</p>
-        <p>Stack: Python + Flask</p>
+        <p>Stack: Python + Flask Commit 1</p>
     </body>
     </html>
     """
