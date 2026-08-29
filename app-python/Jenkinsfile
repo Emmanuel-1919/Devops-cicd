@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            steps {
+                echo 'Ejecutando pruebas unitarias...'
+                dir('app-python') {
+                    sh '''
+                       python3 -m venv venv
+                       source venv/bin/activate
+                       pip3 install -r requirements-dev.txt
+                       pytest
+                    '''
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Desplegando en el clúster de Kubernetes...'
+                sh 'kubectl apply -f k8s/dev/app-python-deployment.yaml'
+            }
+        }
+    }
+}
