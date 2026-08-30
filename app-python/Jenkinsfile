@@ -2,8 +2,10 @@ pipeline {
     agent any
     stages {
         stage('Test') {
+            agent {
+                docker { image 'python:3.12-slim' }
+            }
             steps {
-                echo 'Ejecutando pruebas unitarias...'
                 dir('app-python') {
                     sh '''
                        python3 -m venv venv
