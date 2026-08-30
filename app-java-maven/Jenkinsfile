@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Test') {
+            agent {
+                docker { image 'maven:3.9.6-eclipse-temurin-21' }
+            }
+            steps {
+                dir('app-java-maven') {
+                    sh '''
+                    ./mvnw test
+                    '''
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Desplegando en el clúster de Kubernetes...'
+                sh 'kubectl apply -f k8s/dev/app-java-maven-deployment.yaml'
+            }
+        }
+    }
+}
