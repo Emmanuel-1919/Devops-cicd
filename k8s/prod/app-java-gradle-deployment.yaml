@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-java-gradle
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-java-gradle
+  template:
+    metadata:
+      labels:
+        app: app-java-gradle
+    spec:
+      containers:
+        - name: app-java-gradle
+          image: host.docker.internal:5000/app-java-gradle:cache-test
+          ports:
+            - containerPort: 8080
+          env:
+            - name: APP_ENV
+              value: "dev"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1500m"
+              memory: "1.5Gi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 10
