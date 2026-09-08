@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-java-gradle
-  namespace: qa
+  namespace: gradle
 spec:
   replicas: 1
   selector:

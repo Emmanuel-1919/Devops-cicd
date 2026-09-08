@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app-java-gradle-service
-  namespace: prod
+  namespace: gradle
 spec:
   type: NodePort
   selector:

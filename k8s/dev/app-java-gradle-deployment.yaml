@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-java-gradle
-  namespace: dev
+  namespace: gradle
 spec:
   replicas: 1
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app-java-gradle
-          image: local-registry:5000/app-java-gradle:cache-test
+          image: host.docker.internal:5000/app-java-gradle:cache-test
           ports:
             - containerPort: 8080
           env:

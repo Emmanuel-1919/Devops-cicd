@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-java-maven
-  namespace: prod
+  namespace: maven
 spec:
   replicas: 1
   selector:
