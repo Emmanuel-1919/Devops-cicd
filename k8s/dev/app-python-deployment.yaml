@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-python
-  namespace: dev
+  namespace: python
 spec:
   replicas: 1
   selector:
@@ -14,10 +14,11 @@ spec:
         app: app-python
     spec:
       containers:
-        - name: app-python
-          image: local-registry:5000/app-python:cache-test
-          ports:
-            - containerPort: 8080
-          env:
-            - name: APP_ENV
-              value: "dev"
+      - name: app-python
+        image: host.docker.internal:5000/app-python:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+        env:
+        - name: APP_ENV
+          value: "dev"
