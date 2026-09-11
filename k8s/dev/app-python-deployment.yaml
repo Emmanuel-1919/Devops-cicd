@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: app-python
-        image: host.docker.internal:5000/app-python:be2a42f
+        image: host.docker.internal:5000/app-python:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
         env:
         - name: APP_ENV
           value: "dev"
