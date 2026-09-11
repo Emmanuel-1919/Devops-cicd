@@ -8,6 +8,7 @@ spec:
   selector:
     app: app-java-maven
   ports:
+    - name: http
     - port: 80
       targetPort: 8080
       nodePort: 30080
